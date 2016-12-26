@@ -1,0 +1,46 @@
+{
+  "items": {
+    "bastard_sword": {
+      "name": "Bastard Sword",
+      "symbol": "sword"
+    },
+    "heavy_plate_armour": {
+      "name": "Heavy Plate Armour",
+      "symbol": "shield"
+    },
+    "hot_rot_wine": {
+      "name": "Hot Rot Wine",
+      "symbol": "rot"
+    },
+    "longbow": {
+      "name": "Longbow",
+      "symbol": "moon"
+    },
+    "sailors_lantern": {
+      "name": "Sailor's Lantern",
+      "symbol": "sun"
+    }
+  },
+  "spells": {
+    "bark_skin": {
+      "name": "Bark Skin",
+      "symbol": "sun"
+    },
+    "divination": {
+      "name": "Divination",
+      "symbol": "sun"
+    },
+    "lightning_strike": {
+      "name": "Lightning Strike",
+      "symbol": "moon"
+    },
+    "moonbite": {
+      "name": "Moonbite",
+      "symbol": "moon"
+    },
+    "rite_of_wyld": {
+      "name": "Rite of Wyld",
+      "symbol": "wyld"
+    }
+  }
+}
