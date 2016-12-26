@@ -1,32 +1,28 @@
 import React from 'react'
 import CardList from './CardList'
-import CardStore from '../stores/CardStore'
+import DeckStore from '../stores/DeckStore'
+import SearchBar from './SearchBar'
 import 'css/main'
-
-const getState = () => {
-  return {
-    decks: CardStore.getArray()
-  }
-}
 
 const App = React.createClass({
 
   getInitialState: function() {
-    return getState();
+    return this._getState();
   },
 
   componentDidMount: function() {
-    CardStore.addChangeListener(this._onChange);
+    DeckStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
-    CardStore.removeChangeListener(this._onChange);
+    DeckStore.removeChangeListener(this._onChange);
   },
 
   render: function() {
 
     return (
       <div className="main">
+        <SearchBar />
         {this._renderCardList()}
       </div>
     )
@@ -34,12 +30,18 @@ const App = React.createClass({
 
   _renderCardList: function() {
     return this.state.decks.map(deck => (
-      <CardList key={deck.name} {...deck} />
+      <CardList key={deck.id} {...deck} />
     ))
   },
 
   _onChange: function() {
-    this.setState(getState());
+    this.setState(this._getState());
+  },
+
+  _getState: function() {
+    return {
+      decks: DeckStore.getAll()
+    }
   }
 
 })

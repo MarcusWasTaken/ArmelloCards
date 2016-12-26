@@ -2,80 +2,82 @@ import AppDispatcher from '../dispatcher/AppDispatcher'
 import { EventEmitter } from 'events'
 import lib from 'js/lib'
 
-var _cards = {
-  "items": {
-    "name": "Items",
-    "cards": [
-      {
-        "id": "bastard_sword",
-        "name": "Bastard Sword",
-        "symbol": "sword"
-      },
-      {
-        "id": "heavy_plate_armour",
-        "name": "Heavy Plate Armour",
-        "symbol": "shield"
-      },
-      {
-        "id": "hot_rot_wine",
-        "name": "Hot Rot Wine",
-        "symbol": "rot"
-      },
-      {
-        "id": "longbow",
-        "name": "Longbow",
-        "symbol": "moon"
-      },
-      {
-        "id": "sailors_lantern",
-        "name": "Sailor's Lantern",
-        "symbol": "sun"
-      }
-    ]
+const _cards = [
+  {
+    "id": "bastard_sword",
+    "deck": "items",
+    "name": "Bastard Sword",
+    "symbol": "sword"
   },
-  "spells": {
-    "name": "Spells",
-    "cards": [
-      {
-        "id": "bark_skin",
-        "name": "Bark Skin",
-        "symbol": "sun"
-      },
-      {
-        "id": "divination",
-        "name": "Divination",
-        "symbol": "sun"
-      },
-      {
-        "id": "lightning_strike",
-        "name": "Lightning Strike",
-        "symbol": "moon"
-      },
-      {
-        "id": "moonbite",
-        "name": "Moonbite",
-        "symbol": "moon"
-      },
-      {
-        "id": "rite_of_wyld",
-        "name": "Rite of Wyld",
-        "symbol": "wyld"
-      }
-    ]
+  {
+    "id": "heavy_plate_armour",
+    "deck": "items",
+    "name": "Heavy Plate Armour",
+    "symbol": "shield"
+  },
+  {
+    "id": "hot_rot_wine",
+    "deck": "items",
+    "name": "Hot Rot Wine",
+    "symbol": "rot"
+  },
+  {
+    "id": "longbow",
+    "deck": "items",
+    "name": "Longbow",
+    "symbol": "moon"
+  },
+  {
+    "id": "sailors_lantern",
+    "deck": "items",
+    "name": "Sailor's Lantern",
+    "symbol": "sun"
+  },
+  {
+    "id": "bark_skin",
+    "deck": "spells",
+    "name": "Bark Skin",
+    "symbol": "sun"
+  },
+  {
+    "id": "divination",
+    "deck": "spells",
+    "name": "Divination",
+    "symbol": "sun"
+  },
+  {
+    "id": "lightning_strike",
+    "deck": "spells",
+    "name": "Lightning Strike",
+    "symbol": "moon"
+  },
+  {
+    "id": "moonbite",
+    "deck": "spells",
+    "name": "Moonbite",
+    "symbol": "moon"
+  },
+  {
+    "id": "rite_of_wyld",
+    "deck": "spells",
+    "name": "Rite of Wyld",
+    "symbol": "wyld"
   }
+]
+
+let _filteredCards = [].concat(_cards)
+
+const filterByName = (filter) => {
+  _filteredCards = _cards.filter(item => {
+    return item.name.toLowerCase().search(filter) !== -1
+  })
 }
 
+
 const CardStore = Object.assign({}, EventEmitter.prototype, {
-  get: (deck, name = '') => {
-    return name === '' ? _cards[deck] : _cards[deck]['cards'][name]
-  },
 
-  getAll: (deck = '') => {
-    return deck === '' ? _cards : _cards[deck]
-  },
-
-  getArray: () => {
-    return lib.toArray(_cards)
+  getFiltered: (deckName) => {
+    return _filteredCards.filter(card => { return card.deck == deckName })
   },
 
   emitChange: () => {
@@ -93,6 +95,11 @@ const CardStore = Object.assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register((action) => {
   switch(action.actionType) {
+
+    case 'FILTER_CARDS':
+      filterByName(action.filter)
+      CardStore.emitChange()
+      break
 
     default:
       //no op
