@@ -5,7 +5,6 @@ const webpack = require('webpack')
 
 const config = {
   cache: false,
-  devtool: 'source-map',
   output: {
     filename: '[name].js',
     path: path.join(__dirname, './dist'),
@@ -39,14 +38,18 @@ const config = {
         test: /\.scss$/,
         loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
       },
+      {
+        test: /masonry-layout/,
+        loader: 'imports?define=>false&this=>window'
+      }
     ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.css', '.scss'],
     root: [path.join(__dirname, './src')],
     alias: {
-      components: path.resolve(__dirname, 'src/js/components/'),
-      pages: path.resolve(__dirname, 'src/js/pages/')
+      css: path.resolve(__dirname, 'src/css'),
+      js: path.resolve(__dirname, 'src/js')
     }
   }
 }

@@ -32,6 +32,7 @@ const CardList = React.createClass({
   componentDidUpdate: function() {
     this.masonry.reloadItems()
     this.masonry.layout()
+    this._masonryFix()
   },
   
   render: function() {
@@ -43,6 +44,13 @@ const CardList = React.createClass({
         </ul>
       </div>
     )
+  },
+
+  _masonryFix: function() {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(function() {
+      this.masonry.layout()
+    }.bind(this), 200)
   },
 
   _renderCards: function() {

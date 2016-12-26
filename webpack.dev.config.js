@@ -32,7 +32,7 @@ const config = {
       {
         test: /masonry-layout/,
         loader: 'imports?define=>false&this=>window'
-      },
+      }
     ]
   },
   resolve: {
@@ -40,11 +40,7 @@ const config = {
     root: [path.join(__dirname, './src')],
     alias: {
       css: path.resolve(__dirname, 'src/css'),
-      pres: path.resolve(__dirname, 'src/js/components/presentational'),
-      func: path.resolve(__dirname, 'src/js/components/functional'),
-      js: path.resolve(__dirname, 'src/js'),
-      actions: path.resolve(__dirname, 'src/js/actions'),
-      reducers: path.resolve(__dirname, 'src/js/reducers')
+      js: path.resolve(__dirname, 'src/js')
     }
   }
 }
