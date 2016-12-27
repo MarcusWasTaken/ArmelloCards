@@ -4,10 +4,16 @@ import DeckStore from '../stores/DeckStore'
 import SearchBar from './SearchBar'
 import 'css/main'
 
+const getState = () => {
+  return {
+    decks: DeckStore.getAll()
+  }
+}
+
 const App = React.createClass({
 
   getInitialState: function() {
-    return this._getState();
+    return getState();
   },
 
   componentDidMount: function() {
@@ -35,14 +41,8 @@ const App = React.createClass({
   },
 
   _onChange: function() {
-    this.setState(this._getState());
+    this.setState(getState());
   },
-
-  _getState: function() {
-    return {
-      decks: DeckStore.getAll()
-    }
-  }
 
 })
 

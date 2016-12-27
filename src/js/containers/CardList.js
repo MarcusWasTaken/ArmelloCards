@@ -55,7 +55,7 @@ const CardList = React.createClass({
 
   _renderCards: function() {
     return this.state.cards.map(card => (
-      <Card key={card.name} {...card} />
+      <Card key={card.name} {...card} deck={this.props.id} />
     ))
   },
 

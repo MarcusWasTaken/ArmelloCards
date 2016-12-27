@@ -1,4 +1,5 @@
 import AppDispatcher from '../dispatcher/AppDispatcher'
+import FilterStore from './FilterStore'
 import { EventEmitter } from 'events'
 import lib from 'js/lib'
 
@@ -67,12 +68,20 @@ const _cards = [
 
 let _filteredCards = [].concat(_cards)
 
-const filterByName = (filter) => {
-  _filteredCards = _cards.filter(item => {
-    return item.name.toLowerCase().search(filter) !== -1
+const filterByText = (filter) => {
+  _filteredCards = _cards.filter(card => {
+    return card.name.toLowerCase().search(filter) !== -1
   })
 }
 
+const filterBySymbol = (filter) => {
+  _filteredCards = _cards.filter(card => {
+    return filter.find(symbol => { return symbol.name === card.symbol}).active
+  })
+  if (_filteredCards.length === 0) {
+    _filteredCards = _filteredCards.concat(_cards)
+  }
+}
 
 const CardStore = Object.assign({}, EventEmitter.prototype, {
 
@@ -96,8 +105,15 @@ const CardStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register((action) => {
   switch(action.actionType) {
 
-    case 'FILTER_CARDS':
-      filterByName(action.filter)
+    case 'TEXT_FILTER':
+      AppDispatcher.waitFor([FilterStore.dispatchToken])
+      filterByText(action.filter)
+      CardStore.emitChange()
+      break
+
+    case 'SYMBOL_FILTER':
+      AppDispatcher.waitFor([FilterStore.dispatchToken])
+      filterBySymbol(FilterStore.get('symbol'))
       CardStore.emitChange()
       break
 
