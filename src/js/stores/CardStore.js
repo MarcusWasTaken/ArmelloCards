@@ -568,7 +568,7 @@ const _cards = [
     "id": "wyld_talisman",
     "deck": "treasure",
     "name": "Wyld Talisman",
-    "symbol": "Wyld",
+    "symbol": "wyld",
     "rarity": "1",
     "type": "equippable"
   },
