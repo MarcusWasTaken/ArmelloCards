@@ -63,7 +63,7 @@ gulp.task('serve', ['build:dev'], () => {
 // DISTRIBUTION
 ////////////////////////
 
-gulp.task('html', () => {
+gulp.task('html', ['generate-favicon'], () => {
   return gulp.src('src/index.html')
     .pipe($.realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
     .pipe($.htmlmin({collapseWhitespace: true}))
@@ -147,7 +147,7 @@ gulp.task('generate-favicon', function(done) {
 	})
 })
 
-gulp.task('build:dist', ['generate-favicon', 'html', 'extras'], (callback) => {
+gulp.task('build:dist', ['html', 'extras'], (callback) => {
   webpack(webpackDistConfig, function(err, stats) {
 		if(err) throw new $.util.PluginError("webpack:build", err)
     callback()
