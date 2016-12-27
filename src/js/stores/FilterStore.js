@@ -80,13 +80,12 @@ const FilterStore = Object.assign({}, EventEmitter.prototype, {
 FilterStore.dispatchToken = AppDispatcher.register((action) => {
   switch(action.actionType) {
 
-    case 'TEXT_FILTER':
-      applyTextFilter(action.filter)
-      FilterStore.emitChange()
-      break
-
-    case 'SYMBOL_FILTER':
-      applySymbolFilter(action.filter)
+    case 'FILTER':
+      if (action.type === 'text') {
+        applyTextFilter(action.filter)
+      } else if (action.type === 'symbol') {
+        applySymbolFilter(action.filter)
+      }
       FilterStore.emitChange()
       break
 

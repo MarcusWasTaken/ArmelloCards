@@ -1,21 +1,15 @@
 import AppDispatcher from '../dispatcher/AppDispatcher'
 
 const FilterActions = {
-  
-  filterText: (filter) => {
-    AppDispatcher.dispatch({
-      actionType: 'TEXT_FILTER',
-      filter
-    })
-  },
 
-  filterSymbol: (filter) => {
+  filter: (filter, type) => {
     AppDispatcher.dispatch({
-      actionType: 'SYMBOL_FILTER',
-      filter
+      actionType: 'FILTER',
+      filter,
+      type
     })
   }
-  
+
 }
 
 export default FilterActions

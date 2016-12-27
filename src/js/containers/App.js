@@ -1,7 +1,7 @@
 import React from 'react'
-import CardList from './CardList'
+import Deck from './Deck'
 import DeckStore from '../stores/DeckStore'
-import SearchBar from './SearchBar'
+import Filters from './Filters'
 import 'css/main'
 
 const getState = () => {
@@ -26,18 +26,16 @@ const App = React.createClass({
 
   render: function() {
 
+    let decks = this.state.decks.map(deck => (
+      <Deck key={deck.id} {...deck} />
+    ))
+
     return (
       <div className="main">
-        <SearchBar />
-        {this._renderCardList()}
+        <Filters />
+        {decks}
       </div>
     )
-  },
-
-  _renderCardList: function() {
-    return this.state.decks.map(deck => (
-      <CardList key={deck.id} {...deck} />
-    ))
   },
 
   _onChange: function() {

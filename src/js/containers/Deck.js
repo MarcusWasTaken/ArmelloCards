@@ -9,7 +9,7 @@ const getState = (deck) => {
   }
 }
 
-const CardList = React.createClass({
+const Deck = React.createClass({
 
   getInitialState: function() {
     return getState(this.props.id)
@@ -36,9 +36,11 @@ const CardList = React.createClass({
   },
   
   render: function() {
+    let deck = this.props
+
     return (
       <div>
-        <h3>{this.props.name}</h3>
+        <h3>{deck.name} <small>{deck.filteredCardCount}/{deck.cardCount}</small></h3>
         <ul className="card-list" ref={(ul) => { this.list = ul }}>
           {this._renderCards()}
         </ul>
@@ -65,4 +67,4 @@ const CardList = React.createClass({
 
 })
 
-export default CardList
+export default Deck
