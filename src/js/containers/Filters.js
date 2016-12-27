@@ -34,7 +34,9 @@ const Filters = React.createClass({
       <div className="clearfix">
         <div className="pull-left">
           <h5>Symbols</h5>
-          {symbols}
+          <div className="btn-group">
+            {symbols}
+          </div>
         </div>
         <div className="pull-right">
           <h5>Search</h5>

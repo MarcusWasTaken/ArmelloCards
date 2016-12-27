@@ -293,44 +293,292 @@ const _cards = [
     "type": "play to creature"
   },
   {
-    "id": "bark_skin",
-    "deck": "spells",
-    "name": "Bark Skin",
-    "symbol": "sun",
-    "rarity": "3",
-    "type": "play to creature"
-  },
-  {
-    "id": "divination",
-    "deck": "spells",
-    "name": "Divination",
-    "symbol": "sun",
-    "rarity": "3",
-    "type": "play to hero"
-  },
-  {
-    "id": "lightning_strike",
-    "deck": "spells",
-    "name": "Lightning Strike",
+    "id": "alchemist",
+    "deck": "followers",
+    "name": "Alchemist",
     "symbol": "moon",
-    "rarity": "2",
-    "type": "play to hero, tile"
+    "rarity": "1",
+    "type": "recruitable"
   },
   {
-    "id": "moonbite",
-    "deck": "spells",
-    "name": "Moonbite",
+    "id": "apothecary",
+    "deck": "followers",
+    "name": "Apothecary",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "apprentice",
+    "deck": "followers",
+    "name": "apprentice",
     "symbol": "moon",
-    "rarity": "3",
-    "type": "play to creature, dungeon, plains"
+    "rarity": "1",
+    "type": "recruitable"
   },
   {
-    "id": "rite_of_wyld",
-    "deck": "spells",
-    "name": "Rite of Wyld",
+    "id": "bard",
+    "deck": "followers",
+    "name": "Bard",
+    "symbol": "moon",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "berserker",
+    "deck": "followers",
+    "name": "Berserker",
+    "symbol": "sword",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "blacksmith",
+    "deck": "followers",
+    "name": "Blacksmith",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "brilliant_fool",
+    "deck": "followers",
+    "name": "Brilliant Fool",
+    "symbol": "sun",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "coin_master",
+    "deck": "followers",
+    "name": "Coin Master",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "conjurer",
+    "deck": "followers",
+    "name": "Conjurer",
+    "symbol": "moon",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "diplomat",
+    "deck": "followers",
+    "name": "Diplomat",
+    "symbol": "sun",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "explorer",
+    "deck": "followers",
+    "name": "Explorer",
+    "symbol": "moon",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "miner",
+    "deck": "followers",
+    "name": "Miner",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "poison_taster",
+    "deck": "followers",
+    "name": "Poison Taster",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "spy_master",
+    "deck": "followers",
+    "name": "Spy Master",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "squire",
+    "deck": "followers",
+    "name": "Squire",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "the_stranger",
+    "deck": "followers",
+    "name": "The Stranger",
+    "symbol": "moon",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "trader",
+    "deck": "followers",
+    "name": "Trader",
+    "symbol": "moon",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "warlock",
+    "deck": "followers",
+    "name": "Warlock",
+    "symbol": "rot",
+    "rarity": "1",
+    "type": "recruitable"
+  },
+  {
+    "id": "bane_blade",
+    "deck": "treasure",
+    "name": "Bane Blade",
+    "symbol": "rot",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "banes_claw",
+    "deck": "treasure",
+    "name": "Bane's Claw",
+    "symbol": "rot",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "hand_cannons",
+    "deck": "treasure",
+    "name": "Hand Cannons",
+    "symbol": "sun",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "helm_of_heroes",
+    "deck": "treasure",
+    "name": "Helm of Heroes",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "heroes_shield",
+    "deck": "treasure",
+    "name": "Heroe's Shield",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "lionheart_breast_plate",
+    "deck": "treasure",
+    "name": "Lionheart Breast Plate",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "masquerade_mask",
+    "deck": "treasure",
+    "name": "Masquerade Mask",
+    "symbol": "moon",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "mirror_cape",
+    "deck": "treasure",
+    "name": "Mirror Cape",
+    "symbol": "moon",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "moon_scythe",
+    "deck": "treasure",
+    "name": "Moon Scythe",
+    "symbol": "moon",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "poppet",
+    "deck": "treasure",
+    "name": "Poppet",
+    "symbol": "rot",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "ravens_beak_dagger",
+    "deck": "treasure",
+    "name": "Raven's Beak Dagger",
+    "symbol": "rot",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "royal_banner",
+    "deck": "treasure",
+    "name": "Royal Banner",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "royal_pardon",
+    "deck": "treasure",
+    "name": "Royal Pardon",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "royal_shield",
+    "deck": "treasure",
+    "name": "Royal Shield",
+    "symbol": "shield",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "silver_lance",
+    "deck": "treasure",
+    "name": "Silver Lance",
+    "symbol": "sun",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "winged_boots",
+    "deck": "treasure",
+    "name": "Winged Boots",
+    "symbol": "sun",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "wyld_talisman",
+    "deck": "treasure",
+    "name": "Wyld Talisman",
+    "symbol": "Wyld",
+    "rarity": "1",
+    "type": "equippable"
+  },
+  {
+    "id": "wyldfyre_staff",
+    "deck": "treasure",
+    "name": "Wyldfyre Staff",
     "symbol": "wyld",
     "rarity": "1",
-    "type": "play to bane, stone circle"
+    "type": "equippable"
   }
 ]
 

@@ -14,17 +14,22 @@ const _decks = [
     "name": "Spells",
     "cardCount": "0",
     "filteredCardCount": "0"
+  },
+  {
+    "id": "followers",
+    "name": "Followers",
+    "cardCount": "0",
+    "filteredCardCount": "0"
+  },
+  {
+    "id": "treasure",
+    "name": "Treasure",
+    "cardCount": "0",
+    "filteredCardCount": "0"
   }
 ]
 
-const _decksFilteredCards = [
-  {
-    "id": "items"
-  },
-  {
-    "id": "spells"
-  }
-]
+let _activeDeck = _decks[0].id
 
 const cardCounter = (deck) => {
   let count = 0
@@ -42,6 +47,10 @@ const filterCards = () => {
   }
 }
 
+const setActive = (deckName) => {
+  _activeDeck = deckName
+}
+
 //init decks with the amount of cards in them from CardStore
 for (let i = 0; i < _decks.length; i++) {
   let deck = _decks[i]
@@ -51,7 +60,15 @@ for (let i = 0; i < _decks.length; i++) {
 
 const DeckStore = Object.assign({}, EventEmitter.prototype, {
   get: (query) => {
-    return _decks.filter(deck => { return deck.id == query.toLowerCase() })
+    return _decks.find(deck => { return deck.id == query.toLowerCase() })
+  },
+
+  getActive: () => {
+    return DeckStore.get(_activeDeck)
+  },
+
+  getActiveName: () => {
+    return _activeDeck
   },
 
   getAll: () => {
@@ -77,6 +94,11 @@ AppDispatcher.register((action) => {
     case 'FILTER':
       AppDispatcher.waitFor([CardStore.dispatchToken])
       filterCards()
+      DeckStore.emitChange()
+      break
+
+    case 'ACTIVE_DECK':
+      setActive(action.deckName)
       DeckStore.emitChange()
       break
 

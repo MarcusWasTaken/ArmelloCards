@@ -2,21 +2,22 @@ import React from 'react'
 import Card from '../components/Card'
 import Masonry from 'masonry-layout'
 import CardStore from '../stores/CardStore'
+import DeckStore from '../stores/DeckStore'
 
-const getState = (deck) => {
+const getState = () => {
   return {
-    cards: CardStore.getFiltered(deck)
+    deck: DeckStore.getActive()
   }
 }
 
 const Deck = React.createClass({
 
   getInitialState: function() {
-    return getState(this.props.id)
+    return getState()
   },
 
   componentDidMount: function() {
-    CardStore.addChangeListener(this._onChange)
+    DeckStore.addChangeListener(this._onChange)
     this.masonry = new Masonry( this.list, {
       itemSelector: '.card',
       gutter: 10,
@@ -26,7 +27,7 @@ const Deck = React.createClass({
   },
 
   componentWillUnmount: function() {
-    CardStore.removeChangeListener(this._onChange)
+    DeckStore.removeChangeListener(this._onChange)
   },
 
   componentDidUpdate: function() {
@@ -36,13 +37,16 @@ const Deck = React.createClass({
   },
   
   render: function() {
-    let deck = this.props
+
+    let deck = this.state.deck
+    let cards = CardStore.getFiltered(deck.id).map(card => (
+      <Card key={card.name} {...card} deck={deck.id} />
+    ))
 
     return (
       <div>
-        <h3>{deck.name} <small>{deck.filteredCardCount}/{deck.cardCount}</small></h3>
         <ul className="card-list" ref={(ul) => { this.list = ul }}>
-          {this._renderCards()}
+          {cards}
         </ul>
       </div>
     )
@@ -55,14 +59,8 @@ const Deck = React.createClass({
     }.bind(this), 200)
   },
 
-  _renderCards: function() {
-    return this.state.cards.map(card => (
-      <Card key={card.name} {...card} deck={this.props.id} />
-    ))
-  },
-
   _onChange: function() {
-    this.setState(getState(this.props.id))
+    this.setState(getState())
   }
 
 })
