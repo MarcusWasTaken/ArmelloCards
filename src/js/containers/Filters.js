@@ -34,10 +34,8 @@ const Filters = React.createClass({
     return (
       <div className="filters">
         <h1>Armello Cards</h1>
-        <br/>
         <h4>Search</h4>
         <SearchBar onChange={this._onFilterChange} value={this.state.textFilter} />
-        <br/>
         <h4>Symbols</h4>
         <div className="btn-group btn-group-sm">
           {symbols}

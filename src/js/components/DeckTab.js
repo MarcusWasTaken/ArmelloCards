@@ -6,7 +6,7 @@ const DeckTab = ({ active, id, name, cardCount, filteredCardCount, onClick }) =>
     <a href="#" value={id} onClick={onClick}>
       <img className="tab-icon" src={`/images/deck_icon_${id}.png`} />
       <span className="tab-count">
-        {`${filteredCardCount}⧸${cardCount}`}
+        {`${filteredCardCount}/${cardCount}`}
       </span>
     </a>
   </li>

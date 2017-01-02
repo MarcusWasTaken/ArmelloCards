@@ -45,11 +45,9 @@ const Deck = React.createClass({
     ))
 
     return (
-      <div>
-        <ul className="deck" ref={(ul) => { this.list = ul }}>
-          {cards}
-        </ul>
-      </div>
+      <ul className="deck" ref={(ul) => { this.list = ul }}>
+        {cards}
+      </ul>
     )
   },
 
