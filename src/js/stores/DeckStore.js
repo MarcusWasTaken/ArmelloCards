@@ -1,35 +1,7 @@
 import AppDispatcher from '../dispatcher/AppDispatcher'
 import CardStore from './CardStore'
 import { EventEmitter } from 'events'
-
-const _decks = [
-  {
-    "id": "items",
-    "name": "Items",
-    "cardCount": "0",
-    "filteredCardCount": "0"
-  },
-  {
-    "id": "spells",
-    "name": "Spells",
-    "cardCount": "0",
-    "filteredCardCount": "0"
-  },
-  {
-    "id": "followers",
-    "name": "Followers",
-    "cardCount": "0",
-    "filteredCardCount": "0"
-  },
-  {
-    "id": "treasure",
-    "name": "Treasure",
-    "cardCount": "0",
-    "filteredCardCount": "0"
-  }
-]
-
-let _activeDeck = _decks[0].id
+import deckData from 'src/decks'
 
 const cardCounter = (deck) => {
   let count = 0
@@ -40,6 +12,14 @@ const cardCounter = (deck) => {
   return count
 }
 
+const _decks = deckData.map(deck => {
+  deck.cardCount = cardCounter(CardStore.getByDeck(deck.id))
+  deck.filteredCardCount = deck.cardCount
+  return deck
+})
+
+let _activeDeck = _decks[0].id
+
 const filterCards = () => {
   for (let i = 0; i < _decks.length; i++) {
     let deck = _decks[i]
@@ -49,13 +29,6 @@ const filterCards = () => {
 
 const setActive = (deckName) => {
   _activeDeck = deckName
-}
-
-//init decks with the amount of cards in them from CardStore
-for (let i = 0; i < _decks.length; i++) {
-  let deck = _decks[i]
-  deck.cardCount = cardCounter(CardStore.getByDeck(deck.id))
-  deck.filteredCardCount = cardCounter(CardStore.getFiltered(deck.id))
 }
 
 const DeckStore = Object.assign({}, EventEmitter.prototype, {

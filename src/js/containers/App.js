@@ -49,6 +49,7 @@ const App = React.createClass({
   },
 
   _onTabClick: function(event) {
+    event.preventDefault()
     DeckActions.setActive(event.currentTarget.getAttribute('value').toLowerCase())
   },
 

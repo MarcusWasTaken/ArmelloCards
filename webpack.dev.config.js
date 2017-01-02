@@ -30,17 +30,22 @@ const config = {
         loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
       },
       {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
+      {
         test: /masonry-layout/,
         loader: 'imports?define=>false&this=>window'
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.css', '.scss'],
+    extensions: ['', '.js', '.jsx', '.css', '.scss', '.json'],
     root: [path.join(__dirname, './src')],
     alias: {
       css: path.resolve(__dirname, 'src/css'),
-      js: path.resolve(__dirname, 'src/js')
+      js: path.resolve(__dirname, 'src/js'),
+      src: path.resolve(__dirname, 'src')
     }
   }
 }

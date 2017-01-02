@@ -1,0 +1,14 @@
+[
+  {
+    "id": "items",
+    "name": "Items"
+  },
+  {
+    "id": "spells",
+    "name": "Spells"
+  },
+  {
+    "id": "trickery",
+    "name": "Trickery"
+  }
+]
