@@ -3,6 +3,7 @@ import Card from '../components/Card'
 import Masonry from 'masonry-layout'
 import CardStore from '../stores/CardStore'
 import DeckStore from '../stores/DeckStore'
+import 'css/deck'
 
 const getState = () => {
   return {
@@ -45,7 +46,7 @@ const Deck = React.createClass({
 
     return (
       <div>
-        <ul className="card-list" ref={(ul) => { this.list = ul }}>
+        <ul className="deck" ref={(ul) => { this.list = ul }}>
           {cards}
         </ul>
       </div>

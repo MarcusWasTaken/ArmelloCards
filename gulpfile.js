@@ -80,6 +80,11 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'))
 })
 
+gulp.task('images', () => {
+	return gulp.src('src/images/*.*')
+		.pipe(gulp.dest('dist/images'))
+})
+
 gulp.task('generate-favicon', function(done) {
 	$.realFavicon.generateFavicon({
 		masterPicture: 'src/favicon.png',
@@ -147,7 +152,7 @@ gulp.task('generate-favicon', function(done) {
 	})
 })
 
-gulp.task('build:dist', ['html', 'extras'], (callback) => {
+gulp.task('build:dist', ['html', 'extras', 'images'], (callback) => {
   webpack(webpackDistConfig, function(err, stats) {
 		if(err) throw new $.util.PluginError("webpack:build", err)
     callback()

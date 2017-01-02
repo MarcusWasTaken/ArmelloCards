@@ -4,7 +4,7 @@ import DeckTab from '../components/DeckTab'
 import DeckStore from '../stores/DeckStore'
 import DeckActions from '../actions/DeckActions'
 import Filters from './Filters'
-import 'css/main'
+import 'css/app'
 
 const getState = () => {
   return {
@@ -34,20 +34,22 @@ const App = React.createClass({
     ))
 
     return (
-      <div className="main">
-        <Filters />
-        <br />
-        <ul className="nav nav-tabs">
-          {deckTabs}
-        </ul>
-        <br />
-        <Deck />
+      <div className="app clearfix">
+        <div className="main">
+          <ul className="tab-list">
+            {deckTabs}
+          </ul>
+          <Deck />
+        </div>
+        <aside className="filters">
+          <Filters />
+        </aside>
       </div>
     )
   },
 
   _onTabClick: function(event) {
-    DeckActions.setActive(event.target.getAttribute('value').toLowerCase())
+    DeckActions.setActive(event.currentTarget.getAttribute('value').toLowerCase())
   },
 
   _onChange: function() {

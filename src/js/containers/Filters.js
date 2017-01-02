@@ -3,6 +3,7 @@ import FilterStore from '../stores/FilterStore'
 import FilterActions from '../actions/FilterActions'
 import Symbol from '../components/Symbol'
 import SearchBar from '../components/SearchBar'
+import 'css/filters'
 
 const getState = () => {
   return {
@@ -31,17 +32,16 @@ const Filters = React.createClass({
     ))
 
     return (
-      <div className="clearfix">
-        <div className="pull-left">
-          <h5>Symbols</h5>
-          <div className="btn-group">
-            {symbols}
-          </div>
-        </div>
-        <div className="pull-right">
-          <h5>Search</h5>
-          <SearchBar onChange={this._onFilterChange} value={this.state.textFilter} />
-        </div>
+      <div className="filters">
+        <h1>Armello Cards</h1>
+        <br/>
+        <h4>Search</h4>
+        <SearchBar onChange={this._onFilterChange} value={this.state.textFilter} />
+        <br/>
+        <h4>Symbols</h4>
+        <div className="btn-group btn-group-sm">
+          {symbols}
+        </div>  
       </div>
     )
   },

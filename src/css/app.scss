@@ -1,0 +1,40 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Cinzel', serif;
+  color: white;
+  background-color: #1b1b1b;
+  min-height: 100vh;
+
+  &:before {
+    content: '';
+    position: fixed;
+    background: url(/images/background.jpg);
+    background-size: cover;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    opacity: .2;
+  }
+}
+
+.app {
+  padding: 20px 40px 50px;
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.main {
+  width: calc(100% - 348px);
+  float: left;
+}
+
+.filters {
+  width: 328px;
+  float: right;
+}
