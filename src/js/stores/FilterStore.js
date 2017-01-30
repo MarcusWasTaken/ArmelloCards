@@ -37,7 +37,6 @@ const applyTextFilter = (filter) => {
   }
   _textFilter = filter
   _activeFilter = 'text'
-  
 }
 
 const applySymbolFilter = (filter) => {

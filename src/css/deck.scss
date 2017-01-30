@@ -73,8 +73,13 @@
 
   &-count {
     padding-left: 8px;
-    margin-top: 10px;
-    vertical-align: middle;
+    margin-bottom: 4px;
+    line-height: 1.2;
+    vertical-align: bottom;
     display: inline-block;
+
+    small {
+      display: block;
+    }
   }
 }

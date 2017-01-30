@@ -33,7 +33,6 @@ const Filters = React.createClass({
 
     return (
       <div className="filters">
-        <h1>Armello Cards</h1>
         <h4>Search</h4>
         <SearchBar onChange={this._onFilterChange} value={this.state.textFilter} />
         <h4>Symbols</h4>

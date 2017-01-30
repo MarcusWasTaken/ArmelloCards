@@ -7,6 +7,7 @@ const DeckTab = ({ active, id, name, cardCount, filteredCardCount, onClick }) =>
       <img className="tab-icon" src={`/images/deck_icon_${id}.png`} />
       <span className="tab-count">
         {`${filteredCardCount}/${cardCount}`}
+        <small>{`${Math.round(filteredCardCount/cardCount*100)}%`}</small>
       </span>
     </a>
   </li>

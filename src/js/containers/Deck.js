@@ -19,6 +19,7 @@ const Deck = React.createClass({
 
   componentDidMount: function() {
     DeckStore.addChangeListener(this._onChange)
+    CardStore.addChangeListener(this._onChange)
     this.masonry = new Masonry( this.list, {
       itemSelector: '.card',
       gutter: 10,
@@ -29,6 +30,7 @@ const Deck = React.createClass({
 
   componentWillUnmount: function() {
     DeckStore.removeChangeListener(this._onChange)
+    CardStore.removeChangeListener(this._onChange)
   },
 
   componentDidUpdate: function() {

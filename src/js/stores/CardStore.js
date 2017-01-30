@@ -20,19 +20,27 @@ const _cards = initializeCards(decksJSON, cardsJSON)
 
 let _filteredCards = [].concat(_cards)
 
-const filterByText = (filter) => {
+//debounce for better performance.
+const filterByText = (filter, callback) => {
+  // let RegEx = new RegExp('('+(filter.trim().replace(/([^\w]+)/g, '|').replace(/^|/, '').replace(/|$/, ''))+')', 'g')
   _filteredCards = _cards.filter(card => {
-    return card.name.toLowerCase().search(filter) !== -1 || card.type.toLowerCase().search(filter) !== -1
+    return (
+      card.name.toLowerCase().search(filter) !== -1 || 
+      card.super.toLowerCase().search(filter) !== -1 ||
+      card.description.toLowerCase().search(filter) !== -1
+    )
   })
+  callback()
 }
 
-const filterBySymbol = (filter) => {
+const filterBySymbol = (filter, callback) => {
   _filteredCards = _cards.filter(card => {
     return filter.find(symbol => { return symbol.name === card.symbol}).active
   })
   if (_filteredCards.length === 0) {
     _filteredCards = _filteredCards.concat(_cards)
   }
+  callback()
 }
 
 const CardStore = Object.assign({}, EventEmitter.prototype, {
@@ -64,11 +72,10 @@ CardStore.dispatchToken = AppDispatcher.register((action) => {
     case 'FILTER':
       AppDispatcher.waitFor([FilterStore.dispatchToken])
       if (action.type === 'text') {
-        filterByText(action.filter)
+        filterByText(action.filter, CardStore.emitChange)
       } else if (action.type === 'symbol') {
-        filterBySymbol(FilterStore.get('symbol'))
+        filterBySymbol(FilterStore.get('symbol'), CardStore.emitChange)
       }
-      CardStore.emitChange()
       break
 
     default:

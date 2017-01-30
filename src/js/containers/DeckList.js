@@ -1,10 +1,7 @@
 import React from 'react'
-import Deck from './Deck'
 import DeckTab from '../components/DeckTab'
 import DeckStore from '../stores/DeckStore'
 import DeckActions from '../actions/DeckActions'
-import Filters from './Filters'
-import 'css/app'
 
 const getState = () => {
   return {
@@ -13,7 +10,7 @@ const getState = () => {
   }
 }
 
-const App = React.createClass({
+const DeckList = React.createClass({
 
   getInitialState: function() {
     return getState();
@@ -34,17 +31,9 @@ const App = React.createClass({
     ))
 
     return (
-      <div className="app clearfix">
-        <div className="main">
-          <ul className="tab-list">
-            {deckTabs}
-          </ul>
-          <Deck />
-        </div>
-        <aside className="filters">
-          <Filters />
-        </aside>
-      </div>
+      <ul className="tab-list">
+        {deckTabs}
+      </ul>
     )
   },
 
@@ -59,4 +48,4 @@ const App = React.createClass({
 
 })
 
-export default App
+export default DeckList
