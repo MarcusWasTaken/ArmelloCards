@@ -15,8 +15,6 @@ const webpack = require("webpack")
 const webpackConfig = require("./webpack.config.js")
 const webpackCompiler = webpack(webpackConfig)
 
-const webpackDistConfig = require("./webpack.dist.config.js")
-
 const browserSync = require('browser-sync')
 const reload = browserSync.reload
 const FAVICON_DATA_FILE = 'faviconData.json'
