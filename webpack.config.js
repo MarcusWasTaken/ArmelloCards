@@ -2,31 +2,37 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const production = process.env.NODE_ENV === 'production'
+const development = !production
 
-const config = {
-  cache: false,
-  output: {
-    filename: '[name].js',
-    path: path.join(__dirname, './dist'),
-    publicPath: '/dist'
-  },
-  plugins: [
+let plugins = []
+
+if (production) {
+  plugins = plugins.concat([
     new webpack.optimize.DedupePlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
-    }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoErrorsPlugin()
-  ],
+  ], plugins)
+}
+
+const config = {
+  cache: development ? true : false,
+  devtool: development ? 'eval-source-map' : false,
+  output: {
+    filename: '[name].js',
+    path: path.join(__dirname, development ? './.tmp' : './dist'),
+    publicPath: development ? '/.tmp' : '/dist'
+  },
+  plugins,
   entry: {
     app: ['./src/js/index']
   },
   module: {
     loaders: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         exclude: /node_modules/,
         loaders: ['babel-loader']
       },
@@ -36,7 +42,7 @@ const config = {
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
+        loader: `style-loader!css-loader!sass-loader?outputStyle=${production ? 'compressed' : 'expanded'}`
       },
       {
         test: /\.json$/,
@@ -49,10 +55,10 @@ const config = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.css', '.scss', '.json'],
+    extensions: ['', '.js', '.css', '.scss', '.json'],
     root: [path.join(__dirname, './src')],
     alias: {
-      css: path.resolve(__dirname, 'src/css'),
+      css: path.resolve(__dirname, 'src/styles'),
       js: path.resolve(__dirname, 'src/js'),
       src: path.resolve(__dirname, 'src')
     }

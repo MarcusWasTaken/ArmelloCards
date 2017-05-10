@@ -12,7 +12,9 @@ const del = require('del')
 const fs = require('fs')
 
 const webpack = require("webpack")
-const webpackDevConfig = require("./webpack.dev.config.js")
+const webpackConfig = require("./webpack.config.js")
+const webpackCompiler = webpack(webpackConfig)
+
 const webpackDistConfig = require("./webpack.dist.config.js")
 
 const browserSync = require('browser-sync')
@@ -28,7 +30,14 @@ const FAVICON_DATA_FILE = 'faviconData.json'
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']))
 
 gulp.task('default', ['clean'], () => {
-  gulp.start('build:dist')
+  gulp.start('scripts')
+})
+
+gulp.task('scripts', (callback) => {
+	webpackCompiler.run(function(err, stats) {
+		if(err) throw new $.util.PluginError("webpack:build", err)
+    callback()
+	})
 })
 
 
@@ -37,16 +46,7 @@ gulp.task('default', ['clean'], () => {
 // DEVELOPMENT
 ////////////////////////
 
-const devCompiler = webpack(webpackDevConfig)
-
-gulp.task('build:dev', (callback) => {
-  devCompiler.run(function(err, stats) {
-		if(err) throw new $.util.PluginError("webpack:build", err)
-    callback()
-	})
-})
-
-gulp.task('serve', ['build:dev'], () => {
+gulp.task('serve', ['scripts'], () => {
   browserSync({
     notify: false,
     port: 3000,
@@ -54,10 +54,8 @@ gulp.task('serve', ['build:dev'], () => {
       baseDir: ['.tmp', 'src']
     }
   })
-  gulp.watch(['src/**/*.*', 'src/**/**/*.*'], ['build:dev', reload])
+  gulp.watch(['src/**/*.*', 'src/**/**/*.*'], ['scripts', reload])
 })
-
-
 
 ////////////////////////
 // DISTRIBUTION
@@ -152,19 +150,12 @@ gulp.task('generate-favicon', function(done) {
 	})
 })
 
-gulp.task('build:dist', ['html', 'extras', 'images'], (callback) => {
-  webpack(webpackDistConfig, function(err, stats) {
-		if(err) throw new $.util.PluginError("webpack:build", err)
-    callback()
-	})
-})
-
-gulp.task('serve:dist', () => {
-  browserSync({
-    notify: false,
-    port: 3000,
-    server: {
-      baseDir: ['dist']
-    }
-  })
-})
+// gulp.task('serve:dist', () => {
+//   browserSync({
+//     notify: false,
+//     port: 3000,
+//     server: {
+//       baseDir: ['dist']
+//     }
+//   })
+// })
