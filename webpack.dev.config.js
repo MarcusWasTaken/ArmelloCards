@@ -3,6 +3,8 @@
 const path = require('path')
 const webpack = require('webpack')
 
+console.info(`NODE_ENV value: ${process.env.NODE_ENV}`)
+
 const config = {
   cache: true,
   devtool: 'eval-source-map',
