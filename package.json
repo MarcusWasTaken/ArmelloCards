@@ -31,10 +31,7 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0"
   },
-  "devDependencies": {
-    "react-redux": "^5.0.4",
-    "redux": "^3.6.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "node server.js",
     "postinstall": "gulp"
