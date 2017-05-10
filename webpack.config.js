@@ -60,10 +60,7 @@ const config = {
     alias: {
       css: path.resolve(__dirname, 'src/styles'),
       js: path.resolve(__dirname, 'src/js'),
-      src: path.resolve(__dirname, 'src'),
-      actions: path.resolve(__dirname, 'src/js/actions'),
-      components: path.resolve(__dirname, 'src/js/components'),
-      containers: path.resolve(__dirname, 'src/js/containers')
+      src: path.resolve(__dirname, 'src')
     }
   }
 }
