@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 ////////////////////////
 // INIT
 ////////////////////////
@@ -27,11 +25,9 @@ const FAVICON_DATA_FILE = 'faviconData.json'
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']))
 
-gulp.task('default', ['clean'], () => {
-  gulp.start('scripts')
-})
+gulp.task('default', ['html', 'extras', 'images', 'scripts'])
 
-gulp.task('scripts', (callback) => {
+gulp.task('scripts', ['clean'], (callback) => {
 	webpackCompiler.run(function(err, stats) {
 		if(err) throw new $.util.PluginError("webpack:build", err)
     callback()
@@ -59,14 +55,14 @@ gulp.task('serve', ['scripts'], () => {
 // DISTRIBUTION
 ////////////////////////
 
-gulp.task('html', ['generate-favicon'], () => {
+gulp.task('html', ['clean', 'generate-favicon'], () => {
   return gulp.src('src/index.html')
     .pipe($.realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
     .pipe($.htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('dist'))
 })
 
-gulp.task('extras', () => {
+gulp.task('extras', ['clean'], () => {
   return gulp.src([
     'src/*.*',
     '!src/index.html',
@@ -76,7 +72,7 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'))
 })
 
-gulp.task('images', () => {
+gulp.task('images', ['clean'], () => {
 	return gulp.src('src/images/*.*')
 		.pipe(gulp.dest('dist/images'))
 })

@@ -34,7 +34,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "node server.js",
-    "postinstall": "gulp"
+    "postinstall": "gulp",
+    "build": "NODE_ENV=production gulp"
   },
   "repository": {
     "type": "git",
