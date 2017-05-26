@@ -27,7 +27,7 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']))
 
 gulp.task('default', ['html', 'extras', 'images', 'scripts'])
 
-gulp.task('scripts', ['clean'], (callback) => {
+gulp.task('scripts', (callback) => {
 	webpackCompiler.run(function(err, stats) {
 		if(err) throw new $.util.PluginError("webpack:build", err)
     callback()

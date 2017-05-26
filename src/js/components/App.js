@@ -6,6 +6,7 @@ import 'css/app'
 
 const App = () => (
   <div className="app clearfix">
+    <p>foo</p>
     <div className="main">
       <DeckList />
       <Deck />
