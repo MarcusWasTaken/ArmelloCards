@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A piece of software to view the card library of the game Armello",
   "main": "gulpfile.js",
+  "engines": {
+    "node": "8.1.4"
+  },
   "dependencies": {
     "autoprefixer": "^6.6.0",
     "babel-core": "^6.21.0",
